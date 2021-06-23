@@ -18,3 +18,8 @@ class Card
   end
 
 end
+
+@obj = Card.new(suit: :spades, rank: 4)
+
+puts @obj.suit
+puts @obj.rank
