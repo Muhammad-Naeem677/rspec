@@ -19,7 +19,11 @@ class Card
 
 end
 
-@obj = Card.new(suit: :spades, rank: 4)
-
-puts @obj.suit
-puts @obj.rank
+RSpec.describe 'a playing card' do
+  it 'has a suit' do
+    raise unless Card.new(suit: :spades, rank: 5).suit == :spades
+  end
+  it 'has a rank' do
+    raise unless Card.new(suit: :spades, rank: 12).rank == 12
+  end
+end
