@@ -16,49 +16,48 @@ describe 'Card' do
     end
 
     context 'equality' do
-        it 'is equal to itself' do
-            subject = card(suit: :spades, rank: 5)
-            other = card(suit: :spades, rank: 5)
-
-            raise unless subject == other
+        def subject
+            @subject ||= card(suit: :spades, rank: 5)
         end
 
-        it 'is hash equal to itself' do
-            subject = card(suit: :spades, rank: 5)
-            other = card(suit: :spades, rank: 5)
+        describe 'comparing against self' do
+            def other
+                @other = card(suit: :spades, rank: 5)
+            end
 
-            raise unless Set.new([subject, other]).size == 1
+            it 'is equal' do
+                raise unless subject == other
+            end
+
+            it 'is hash equal' do
+                raise unless Set.new([subject, other]).size == 1
+            end
         end
 
         describe 'comparing to a card of different suit' do
-    
-            it 'is not equal' do
-                subject = card(suit: :spades, rank: 5)
-                other = card(suit: :hearts, rank: 5)
+            def other
+                other ||= card(suit: :hearts, rank: 5)
+            end
 
+            it 'is not equal' do
                 raise unless subject != other
             end
         
             it 'is not hash equal' do
-                subject = card(suit: :spades, rank: 5)
-                other = card(suit: :hearts, rank: 5)
-
                 raise unless Set.new([subject, other]).size == 2
             end
         end
         
-        describe 'comparint to a card of different rank' do
-            it 'is not equal' do
-                subject = card(suit: :spades, rank: 5)
-                other = card(suit: :spades, rank: 2)
+        describe 'comparing to a card of different rank' do
+            def other
+                other ||= card(suit: :spades, rank: 2)
+            end
 
+            it 'is not equal' do
                 raise unless subject != other
             end
         
             it 'is not hash equal' do
-                subject = card(suit: :spades, rank: 5)
-                other = card(suit: :spades, rank: 2)
-
                 raise unless Set.new([subject, other]).size == 2
             end
         end
