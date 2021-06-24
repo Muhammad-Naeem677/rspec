@@ -13,6 +13,27 @@ describe 'Card' do
     it 'has a rank' do
       raise unless card(rank: 12).rank == 12
     end
+
+    it 'is equal to itself' do
+        subject = card(suit: :spades, rank: 5)
+        other = card(suit: :spades, rank: 5)
+
+        raise unless subject == other
+    end
+  
+    it 'is not equal to a card of differing suit' do
+        subject = card(suit: :spades, rank: 5)
+        other = card(suit: :hearts, rank: 5)
+
+        raise unless subject.suit != other.suit
+    end
+  
+    it 'is not equal to a card of differing rnak' do
+        subject = card(suit: :spades, rank: 5)
+        other = card(suit: :spades, rank: 2)
+
+        raise unless subject.rank != other.rank
+    end
   
     describe 'a jack' do
       it 'ranks higher than a 10' do

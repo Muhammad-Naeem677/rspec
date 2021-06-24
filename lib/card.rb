@@ -22,5 +22,9 @@ class Card
     @rank
   end
 
+  def == (other)
+    true
+  end
+
 end
 
