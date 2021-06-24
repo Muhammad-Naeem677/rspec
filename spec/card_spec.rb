@@ -1,3 +1,4 @@
+require 'set'
 require 'card.rb'
 
 describe 'Card' do
@@ -20,19 +21,40 @@ describe 'Card' do
 
         raise unless subject == other
     end
+
+    it 'is hash equal to itself' do
+        subject = card(suit: :spades, rank: 5)
+        other = card(suit: :spades, rank: 5)
+
+        raise unless Set.new([subject, other]).size == 1
+    end
   
     it 'is not equal to a card of differing suit' do
         subject = card(suit: :spades, rank: 5)
         other = card(suit: :hearts, rank: 5)
 
-        raise unless subject.suit != other.suit
+        raise unless subject != other
     end
   
-    it 'is not equal to a card of differing rnak' do
+    it 'is not hash equal to a card of differing suit' do
+        subject = card(suit: :spades, rank: 5)
+        other = card(suit: :hearts, rank: 5)
+
+        raise unless Set.new([subject, other]).size == 2
+    end
+  
+    it 'is not equal to a card of differing rank' do
         subject = card(suit: :spades, rank: 5)
         other = card(suit: :spades, rank: 2)
 
-        raise unless subject.rank != other.rank
+        raise unless subject != other
+    end
+  
+    it 'is not hash equal to a card of differing rank' do
+        subject = card(suit: :spades, rank: 5)
+        other = card(suit: :spades, rank: 2)
+
+        raise unless Set.new([subject, other]).size == 2
     end
   
     describe 'a jack' do
