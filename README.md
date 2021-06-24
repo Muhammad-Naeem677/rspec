@@ -16,6 +16,12 @@ Some flags that rspec use:
 * --format doc
 * --color
 
+RSpec words
+* describe
+* it
+* context
+* shared_examples_for, it_behaves_like
+
 Organize code, coding in lib dir and testing spec files in spec dir.
 ```
 mkdir lib
