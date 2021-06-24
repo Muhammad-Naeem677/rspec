@@ -1,9 +1,10 @@
 # RSpec
 
--- Test cases with a ruby gem of rspec --
+-- Test cases with a ruby gem of rspec --  
+`Test Behaviour not Implementation`
 
 1. Install rspec gem
-   ```
+   ```ruby
    gem install rspec
 2. How to run rspec test
     ```
