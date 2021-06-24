@@ -22,7 +22,7 @@ class Card
     @rank
   end
 
-  def == (other)
+  def ==(other)
     rank == other.rank && suit == other.suit
   end
 
