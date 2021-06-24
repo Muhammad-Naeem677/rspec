@@ -9,12 +9,10 @@ describe 'Card' do
     end
     
     it 'has a suit' do
-      actual = card(suit: :spades).suit
-      expected = :spades
-      raise "Expected #{expected.inspect}, got #{actual.inspect}" unless actual == expected
+      expect(card(suit: :spades).suit).to eq(:spades)
     end
     it 'has a rank' do
-      raise unless card(rank: 12).rank == 12
+      expect(card(rank: 12).rank).to eq(12)
     end
 
     context 'equality' do
@@ -24,21 +22,21 @@ describe 'Card' do
             let(:other) { card(suit: :spades, rank: 5) }
 
             it 'is equal' do
-                raise unless subject == other
+              expect(subject).to eq(other)
             end
 
             it 'is hash equal' do
-                raise unless Set.new([subject, other]).size == 1
+              expect(Set.new([subject, other]).size).to eq(1)
             end
         end
 
         shared_examples_for 'an unequal card' do
           it 'is not equal' do
-            raise unless subject != other
+            expect(subject).to_not eq(other)
           end
       
           it 'is not hash equal' do
-              raise unless Set.new([subject, other]).size == 2
+            expect(Set.new([subject, other]).size).to eq(2)
           end
         end
 
@@ -60,7 +58,7 @@ describe 'Card' do
         lower = card(rank: 10)
         higher = card(rank: :jack)
   
-        raise unless higher.rank > lower.rank
+        expect(higher.rank).to be > lower.rank
       end
     end
   
@@ -69,7 +67,7 @@ describe 'Card' do
         lower = card(rank: :jack)
         higher = card(rank: :queen)
   
-        raise unless higher.rank > lower.rank
+        expect(higher.rank).to be > lower.rank
       end
     end
   
@@ -78,7 +76,7 @@ describe 'Card' do
         lower = card(rank: :queen)
         higher = card(rank: :king)
   
-        raise unless higher.rank > lower.rank
+        expect(higher.rank).to be > lower.rank
       end
     end
   end
