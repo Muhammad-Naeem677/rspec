@@ -1,6 +1,6 @@
 require 'card.rb'
 
-RSpec.describe 'a playing card' do
+describe 'Card' do
     def card(params = {})
         defaults = { suit: :spades, rank: 7,}
 
