@@ -1,4 +1,3 @@
-require 'spec_helper.rb'
 require 'card.rb'
 
 RSpec.describe 'a playing card' do
