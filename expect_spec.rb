@@ -20,4 +20,12 @@ class EqMatcher
   end
 end
 
-ExpectationTarget.new(1).to EqMatcher.new(1)
+def expect(actual)
+  ExpectationTarget.new(actual)
+end
+
+def eq(expected)
+  EqMatcher.new(expected)
+end
+
+expect(1).to eq(2)
