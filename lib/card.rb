@@ -14,6 +14,10 @@ class Card
       end
   end
 
+  def inspect
+    "<Card #{rank} #{suit}>"
+  end
+
   def suit
     @suit
   end
