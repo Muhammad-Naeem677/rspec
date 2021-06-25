@@ -2,7 +2,18 @@ require 'deck'
 
 RSpec::Matchers.define(:be_contiguous) do
     match do |array|
-        array.sort.each_cons(2).all? { |x, y| x + 1 == y }
+        !first_non_contiguous_pair(array)
+    end
+
+    failure_message do |array|
+        "%s and %s were not contiguous" % first_non_contiguous_pair(array)
+    end
+
+    def first_non_contiguous_pair(array)
+        array
+            .sort
+            .each_cons(2)
+            .detect { |x, y| x + 1 != y }
     end
 end
 
