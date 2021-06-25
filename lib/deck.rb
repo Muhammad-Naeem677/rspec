@@ -1,7 +1,7 @@
 require 'card'
 
 class Deck
-    RANKS = (7..10).to_a + [:jack, :queen, :king, :ace]
+    RANKS = (6..9).to_a + [:jack, :queen, :king, :ace]
     SUITS = [:hearts, :clubs, :diamonds, :spades]
     
     def self.all
