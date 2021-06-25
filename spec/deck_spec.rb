@@ -7,9 +7,8 @@ describe 'Deck' do
         end
 
         it 'has seven as it lowest card' do
-            Deck::SUITS.each do |suit|
-                expect(Deck.all).to include(Card.build(suit, 8))
-                expect(Deck.all).to_not include(Card.build(suit, 7))
+            Deck.all.each do |card|
+                expect(card.rank).to be >= 8                
             end
         end
     end
