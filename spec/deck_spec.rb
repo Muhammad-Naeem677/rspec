@@ -1,5 +1,11 @@
 require 'deck'
 
+RSpec::Matchers.define(:be_contiguous) do
+    match do |array|
+        array.sort.each_cons(2).all? { |x, y| x + 1 == y }
+    end
+end
+
 describe 'Deck' do
     describe '.all' do
         it 'contains 32 cards' do
@@ -8,13 +14,7 @@ describe 'Deck' do
 
         it 'has contiguous ranks by suit' do
             Deck.all.group_by { |card| card.suit }.each do |suit, cards|
-                contiguous = cards
-                    .map { |card| card.rank }
-                    .sort
-                    .each_cons(2)
-                    .all? { |x, y| x + 1 == y }
-                
-                expect(contiguous).to eq(true)
+                expect(cards.map { |card| card.rank }).to be_contiguous
             end
         end
     end
