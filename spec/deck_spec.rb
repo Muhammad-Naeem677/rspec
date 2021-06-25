@@ -7,9 +7,7 @@ describe 'Deck' do
         end
 
         it 'has seven as it lowest card' do
-            Deck.all.each do |card|
-                expect(card.rank).to be >= 8                
-            end
+            expect(Deck.all.map { |card| card.rank }).to all(be >= 8)
         end
     end
 end
