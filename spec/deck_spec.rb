@@ -7,7 +7,7 @@ describe 'Deck' do
         end
 
         it 'has seven as it lowest card' do
-            expect(Deck.all.map { |card| card.rank }).to all(be >= 8)
+            expect(Deck.all).to all(have_attributes(rank: be >= 8))
         end
     end
 end
