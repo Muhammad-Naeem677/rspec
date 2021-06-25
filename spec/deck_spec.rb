@@ -1,19 +1,20 @@
 require 'deck'
 
-RSpec::Matchers.define(:be_contiguous) do
+RSpec::Matchers.define(:be_contiguous_by_attribute) do |attr|
+    puts "attributes=#{attr}"
     match do |array|
-        !first_non_contiguous_pair(array)
+        !first_non_contiguous_pair(array, attr)
     end
 
     failure_message do |array|
-        "%s and %s were not contiguous" % first_non_contiguous_pair(array)
+        "%s and %s were not contiguous" % first_non_contiguous_pair(array, attr)
     end
 
-    def first_non_contiguous_pair(array)
+    def first_non_contiguous_pair(array, attr)
         array
-            .sort
+            .sort_by { |x| x.send(attr) }
             .each_cons(2)
-            .detect { |x, y| x + 1 != y }
+            .detect { |x, y| x.send(attr) + 1 != y.send(attr) }
     end
 end
 
@@ -25,7 +26,7 @@ describe 'Deck' do
 
         it 'has contiguous ranks by suit' do
             Deck.all.group_by { |card| card.suit }.each do |suit, cards|
-                expect(cards.map { |card| card.rank }).to be_contiguous
+                expect(cards).to be_contiguous_by_attribute('rank')
             end
         end
     end
