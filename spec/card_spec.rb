@@ -80,7 +80,7 @@ describe 'Card' do
       end
     end
 
-    describe '.from_string' do
+    describe '.from_string', :aggregate_failures do
       it 'parses numbers' do
         expect(Card.from_string("7H")).to eq(Card.build(:hearts, 7))
       end
@@ -90,11 +90,9 @@ describe 'Card' do
       end
 
       it 'parses face cards' do
-        aggregate_failures do
           expect(Card.from_string("JC")).to eq(Card.build(:clubs, :jack))
           expect(Card.from_string("QC")).to eq(Card.build(:clubs, :queen))
           expect(Card.from_string("KC")).to eq(Card.build(:clubs, :king))
-        end
       end
     end
 
