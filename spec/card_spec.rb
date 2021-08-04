@@ -89,15 +89,9 @@ describe 'Card' do
         expect(Card.from_string("10S")).to eq(Card.build(:spades, 10))
       end
 
-      it 'parses jack' do
+      it 'parses face cards' do
         expect(Card.from_string("JC")).to eq(Card.build(:clubs, :jack))
-      end
-
-      it 'parses queen' do
         expect(Card.from_string("QC")).to eq(Card.build(:clubs, :queen))
-      end
-
-      it 'parses king' do
         expect(Card.from_string("KC")).to eq(Card.build(:clubs, :king))
       end
     end
