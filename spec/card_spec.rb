@@ -90,9 +90,11 @@ describe 'Card' do
       end
 
       it 'parses face cards' do
-        expect(Card.from_string("JC")).to eq(Card.build(:clubs, :jack))
-        expect(Card.from_string("QC")).to eq(Card.build(:clubs, :queen))
-        expect(Card.from_string("KC")).to eq(Card.build(:clubs, :king))
+        aggregate_failures do
+          expect(Card.from_string("JC")).to eq(Card.build(:clubs, :jack))
+          expect(Card.from_string("QC")).to eq(Card.build(:clubs, :queen))
+          expect(Card.from_string("KC")).to eq(Card.build(:clubs, :king))
+        end
       end
     end
 
